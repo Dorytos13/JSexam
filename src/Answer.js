@@ -3,18 +3,12 @@ import { Game } from "./Game";
 export class Answer {
     #answer;
 
-    constructor(answer) {
+    constructor() {
         this.#answer = answer;
-        // this.letter1 = letter1;
-        // this.letter2 = letter2;
-        // this.letter3 = letter3;
-        // this.letter4 = letter4;
-        // this.letter5 = letter5;
-        // this.letter6 = letter6;
         this.answer = this.createForm();
-
         this.answer.addEventListener('submit', () => this.tentative());
         
+        this.game = new Game;
     }
     
     createForm(){
@@ -42,7 +36,7 @@ export class Answer {
         // form.appendChild(input4);
 
         const html = `
-        <form class="row" id="row-0" ${inert}>
+        <form class="row" id="row-0" inert>
 	        <input class="letter" type="text" name="letter-0" id="row-0--0" maxlength="1">
 	        <input class="letter" type="text" name="letter-1" id="row-0--1" maxlength="1">
 	        <input class="letter" type="text" name="letter-2" id="row-0--2" maxlength="1">
@@ -53,7 +47,7 @@ export class Answer {
         `
 
         const main = document.querySelector(".board");
-        main.appendChild(html);
+        main.insertAdjacentHTML("afterbegin", html);
 
         
 
@@ -63,6 +57,8 @@ export class Answer {
                 
             }
         });
+
+        return main;
     }
 
     isAlphaNumericKey(key) {
@@ -86,5 +82,9 @@ export class Answer {
 
     getAnswer() {
         return this.#answer;
+    }
+
+    conditions() {
+        //conditions que la réponse respecte et affichage des messages
     }
 }

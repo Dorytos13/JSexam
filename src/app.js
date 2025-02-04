@@ -11,7 +11,7 @@ async function fetchData(guess) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify( guess )
         }
-        const response = await fetch(`${API_BASE_URL}/guess`, options);
+        const response = await fetch(`https://progweb-wwwordle-api.onrender.com/guess`, options);
         if (!response.ok) throw new Error("Erreur de récupération");
         const data = await response.json();
         console.log(data);
@@ -21,9 +21,14 @@ async function fetchData(guess) {
     }
 }
 
+
 fetchData();
 
 let parties = 5;
 const game = new Game(parties);
 const answers = [];
 const answer = new Answer;
+
+
+
+
